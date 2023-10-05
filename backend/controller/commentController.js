@@ -7,6 +7,7 @@ const commentController = {
   async createComment(req, res, next) {
     const commentSchema = Joi.object({
       content: Joi.string().required(),
+      creator: Joi.string().required(),
       author: Joi.string().regex(mongoIdPattern).required(),
       blog: Joi.string().regex(mongoIdPattern).required(),
     });
@@ -14,13 +15,14 @@ const commentController = {
     if (error) {
       return next(error);
     }
-    const { content, author, blog } = req.body;
+    const { content, author, blog, creator } = req.body;
     //saving to the database
     try {
       const newCommnet = new Comment({
         content,
         author,
         blog,
+        creator,
       });
       await newCommnet.save();
     } catch (error) {

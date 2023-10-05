@@ -69,7 +69,7 @@ const authController = {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
     });
-    res.status(201).json({ user, auth: false });
+    res.status(201).json({ user, auth: true });
   },
   //login method
   async login(req, res, next) {
@@ -121,7 +121,7 @@ const authController = {
       maxAge: 1000 * 60 * 60 * 24,
       httpOnly: true,
     });
-    await res.status(200).json({ user, auth: false });
+    res.status(200).json({ user, auth: true });
   },
   //logout method
   async logout(req, res, next) {

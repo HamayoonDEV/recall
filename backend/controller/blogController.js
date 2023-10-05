@@ -3,6 +3,7 @@ import fs from "fs";
 import Blog from "../models/blog.js";
 import { BACKEND_SERVER_PATH } from "../config/index.js";
 import Comment from "../models/comment.js";
+import BlogDto from "../Dto/BlogDto.js";
 
 const mongoIdPattern = /^[0-9a-fA-F]{24}$/;
 const blogController = {
@@ -41,16 +42,16 @@ const blogController = {
     } catch (error) {
       return next(error);
     }
-    res.status(200).json({ blog });
+    res.status(201).json({ blog });
   },
   //get all blog
   async getAll(req, res, next) {
     //get all blogs
     try {
-      const blogs = await Blog.find({});
+      const blogs = await Blog.find({}).populate("author");
       const blogArr = [];
       for (let i = 0; i < blogs.length; i++) {
-        const blog = blogs[i];
+        const blog = new BlogDto(blogs[i]);
         blogArr.push(blog);
       }
       return res.status(200).json({ blogs: blogArr });
@@ -70,7 +71,7 @@ const blogController = {
     const { id } = req.params;
     let blog;
     try {
-      blog = await Blog.findOne({ _id: id });
+      blog = await Blog.findOne({ _id: id }).populate("author");
       if (!blog) {
         const error = {
           status: 404,
@@ -81,8 +82,9 @@ const blogController = {
     } catch (error) {
       return next(error);
     }
+    const blogDto = new BlogDto(blog);
     //sending response
-    res.status(200).json({ blog });
+    res.status(200).json({ blog: blogDto });
   },
   //update blog method
   async updateBlog(req, res, next) {

@@ -1,0 +1,103 @@
+
+
+.DetailedBlog {
+    display: flex;
+    margin-top: 20px;
+    padding: 20px;
+    gap: 2rem;
+    margin-top: 8%;
+}
+
+.right, .left {
+    flex: 1;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.right {
+    position: relative;
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 0;
+}
+
+p {
+    color: #666;
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+img {
+    display: block;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.createComment, .right > div {
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.createComment input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.createComment button, .right > div button {
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.createComment button:hover, .right > div button:hover {
+    background-color: #0056b3;
+}
+
+.right > div button:nth-child(2) {
+    margin-left: 10px; /* Space between the "Edit" and "Delete" buttons */
+}
+
+.left {
+    overflow-y: auto;
+}
+
+.left div {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.left h3 {
+    margin-top: 0;
+    color: #007BFF;
+    font-size: 1.1em;
+}
+
+.left p {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .DetailedBlog {
+        flex-direction: column;
+    }
+
+    .right, .left {
+        margin-bottom: 20px;
+    }
+}
