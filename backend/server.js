@@ -8,7 +8,7 @@ import cors from "cors";
 
 const corsOptions = {
   credentials: true,
-  origin: ["http://localhost:3000"],
+  origin: ["recall-one.vercel.app"],
 };
 
 const app = express();
